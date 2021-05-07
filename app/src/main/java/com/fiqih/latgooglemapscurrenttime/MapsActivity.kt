@@ -43,7 +43,7 @@ class MapsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
 
-        //supportActionBar!!.subtitle = "Created by Fiqih"
+        supportActionBar!!.subtitle = "Created by Fiqih"
         getCurrentLocation()
         btn_set.setOnClickListener{
         addRecord()
