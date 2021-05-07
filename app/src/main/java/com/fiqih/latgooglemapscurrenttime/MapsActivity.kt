@@ -100,7 +100,7 @@ class MapsActivity : AppCompatActivity() {
                                         currentLocation.longitude, 1)
 
                                     currentAddress = geoCoderResult[0].getAddressLine(0)
-                                    currentTime = SimpleDateFormat("dd-MM-yyyy || HH:mm:ss", Locale.getDefault()).format(
+                                    currentTime = SimpleDateFormat("EEEE, dd-MM-yyyy \nHH:mm:ss", Locale.getDefault()).format(
                                             Date()
                                     )
 
