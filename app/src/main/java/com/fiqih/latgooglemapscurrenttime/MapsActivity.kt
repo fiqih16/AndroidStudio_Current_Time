@@ -2,6 +2,7 @@ package com.fiqih.latgooglemapscurrenttime
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
@@ -10,10 +11,9 @@ import android.os.Bundle
 import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.*
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -23,23 +23,27 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_itemhistory.*
-import kotlinx.android.synthetic.main.history_activity.*
+import kotlinx.android.synthetic.main.activity_maps.*
+import kotlinx.android.synthetic.main.activity_history.*
+import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MapsActivity : AppCompatActivity() {
 
     private lateinit var mMap: GoogleMap
     private var fusedLocationClient: FusedLocationProviderClient? = null
     private lateinit var currentAddress: String
+    private lateinit var currentTime: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        setupListOfDataIntoRecyclerView()
         getCurrentLocation()
+        btn_set.setOnClickListener{
         addRecord()
+            closeKeyboard()
+        }
     }
     @SuppressLint("RestrictedApi")
     fun getCurrentLocation() {
@@ -90,6 +94,10 @@ class MapsActivity : AppCompatActivity() {
                                     val geoCoderResult  = geocoder.getFromLocation(currentLocation.latitude,
                                         currentLocation.longitude, 1)
 
+                                    currentAddress = geoCoderResult[0].getAddressLine(0)
+                                    currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(
+                                            Date()
+                                    )
 
                                     var myLocation = LatLng(currentLatitude, currentLongitude)
                                     mMap.addMarker(MarkerOptions().position(myLocation)
@@ -117,56 +125,42 @@ class MapsActivity : AppCompatActivity() {
     // Toolbar item yang diklik
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        when(id) {
-            R.id.toolbar_upright_Favorite -> {
-                val intent = Intent(applicationContext, itemhistory::class.java)
-                startActivity(intent)
-                true
+        if(id == R.id.historyMenu) {
+            Toast.makeText(this, "History Saat Ini", Toast.LENGTH_SHORT).show()
+            val intent = Intent(applicationContext, history::class.java)
+            startActivity(intent)
+            return true
             }
-            else -> false
-        }
         return super.onOptionsItemSelected(item)
     }
 
     private fun addRecord(){
 
-        val namakeg = Tv_kegia.text.toString()
-//        val waktu = Tv_Waktu.text.toString()
-//
-//        val lok = Tv_Lok.text.toString()
+        val namakeg = Et_keg.text.toString()
 
         val databaseHandler: DatabaseHandler = DatabaseHandler(this)
         if (!namakeg.isEmpty()){
-            val status = databaseHandler.addActivities(MpModel(0, namakeg))
+            val status = databaseHandler.addActivities(MpModel(0, namakeg , currentTime , currentAddress))
             if (status > -1){
-                Toast.makeText( this, "Berhasil Menambahkan Record", Toast.LENGTH_SHORT).show()
-                Tv_kegia.text
+                Toast.makeText( this, "Berhasil", Toast.LENGTH_SHORT).show()
+                Et_keg.text.clear()
 //                Tv_Waktu.text.clear()
 //
 //                Tv_Lok.text.clear()
 
             }
         }else{
-            Toast.makeText( this,"Masukkan Nama dan email anda", Toast.LENGTH_SHORT).show()
+            Toast.makeText( this,"Masukkan", Toast.LENGTH_SHORT).show()
         }
     }
 
 
-    // method untuk mendapatkan jumlah record
-    private fun getItemList(): ArrayList<MpModel>{
-        val databaseHandler: DatabaseHandler = DatabaseHandler(this)
-        val empList: ArrayList<MpModel> = databaseHandler.viewActivities()
-        return empList
-    }
-
-
-    // method untuk menampilkan emplist ke recycler view
-    private fun  setupListOfDataIntoRecyclerView(){
-        if (getItemList().size > 0){
-            rv_history.visibility = View.VISIBLE
-
-            rv_history.layoutManager = LinearLayoutManager(this)
-            rv_history.adapter =  itemAdapter(this,getItemList())
+    // method to close keyboard
+    private fun closeKeyboard(){
+        val view = this.currentFocus
+        if (view!= null){
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken,0)
         }
     }
 

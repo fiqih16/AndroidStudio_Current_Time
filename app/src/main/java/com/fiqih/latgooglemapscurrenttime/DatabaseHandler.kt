@@ -27,7 +27,7 @@ class DatabaseHandler (context: Context) : SQLiteOpenHelper(context, DATABASE_NA
                 + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_NAMAKEG + " TEXT,"
                 + KEY_WAKTU + " TEXT,"
-                + KEY_LOKASI + " TEXT")
+                + KEY_LOKASI + " TEXT)")
         db?.execSQL(CREATE_CONTACTS_TABLE)
     }
 
@@ -41,8 +41,10 @@ class DatabaseHandler (context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(KEY_NAMAKEG, gmp.namaKeg)
+        contentValues.put(KEY_WAKTU, gmp.waktu)
+        contentValues.put(KEY_LOKASI, gmp.lokasi)
 
-        val success = db.insert(TABLE_CONTACTS,null,contentValues)
+        val success = db.insert(TABLE_CONTACTS, null, contentValues)
         db.close()
         return success
     }
@@ -64,17 +66,19 @@ class DatabaseHandler (context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         }
         var id: Int
         var namakeg: String
+        var waktu: String
+        var lokasi: String
 
-
-//        if (cursor.moveToFirst()) {
-//            do {
-//                id = cursor.getInt(cursor.getColumnIndex(KEY_ID))
-//                namakeg = cursor.getString(cursor.getColumnIndex(KEY_NAMAKEG))
-//
-//                val gmp = MpModel(id = id, namakeg = namakeg)
-//                gmpList.add(gmp)
-//            } while (cursor.moveToNext())
-//        }
+        if (cursor.moveToFirst()) {
+            do {
+                id = cursor.getInt(cursor.getColumnIndex(KEY_ID))
+                namakeg = cursor.getString(cursor.getColumnIndex(KEY_NAMAKEG))
+                waktu = cursor.getString(cursor.getColumnIndex(KEY_WAKTU))
+                lokasi = cursor.getString(cursor.getColumnIndex(KEY_LOKASI))
+                val gmp = MpModel(id = id, namaKeg = namakeg, waktu = waktu, lokasi = lokasi)
+                gmpList.add(gmp)
+            } while (cursor.moveToNext())
+        }
         return gmpList
     }
 

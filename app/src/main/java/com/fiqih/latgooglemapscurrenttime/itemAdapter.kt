@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.history_activity.view.*
+import kotlinx.android.synthetic.main.activity_history.view.*
 import kotlinx.android.synthetic.main.activity_itemhistory.view.*
 
 class itemAdapter (val context: Context, val items: ArrayList<MpModel>) : RecyclerView.Adapter<itemAdapter.ViewHolder>() {
@@ -15,6 +15,7 @@ class itemAdapter (val context: Context, val items: ArrayList<MpModel>) : Recycl
         val Keg = view.Tv_kegia
         val waktu = view.Tv_Waktu
         val lokasi = view.Tv_Lok
+        val no = view.Tv_id
     }
 
     // method untuk membuat view holder
@@ -22,8 +23,7 @@ class itemAdapter (val context: Context, val items: ArrayList<MpModel>) : Recycl
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.activity_itemhistory, parent, false
-            )
+                R.layout.activity_itemhistory, parent, false)
         )
     }
 
@@ -35,6 +35,7 @@ class itemAdapter (val context: Context, val items: ArrayList<MpModel>) : Recycl
         holder.waktu.text = item.waktu
 
         holder.lokasi.text = item.lokasi
+        holder.no.text = position.toString()
 //        holder.tvalamat.text = item.alamat
 
         if (position % 2 == 0) {
