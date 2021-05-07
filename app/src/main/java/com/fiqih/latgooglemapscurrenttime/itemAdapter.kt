@@ -16,6 +16,7 @@ class itemAdapter (val context: Context, val items: ArrayList<MpModel>) : Recycl
         val waktu = view.Tv_Waktu
         val lokasi = view.Tv_Lok
         val no = view.Tv_id
+        val ivdel = view.iv_delete
     }
 
     // method untuk membuat view holder
@@ -42,16 +43,16 @@ class itemAdapter (val context: Context, val items: ArrayList<MpModel>) : Recycl
             holder.linlay.setBackgroundColor(
                 ContextCompat.getColor(
                     context,
-                    R.color.design_default_color_secondary
-                )
-            )
+                    R.color.color1))
         } else {
             holder.linlay.setBackgroundColor(
                 ContextCompat.getColor(
                     context,
-                    R.color.design_default_color_surface
-                )
-            )
+                    R.color.color2))
+        }
+        holder.ivdel.setOnClickListener{
+            if (context is history)
+                context.deleteRecordAlertDialog(item)
         }
     }
 

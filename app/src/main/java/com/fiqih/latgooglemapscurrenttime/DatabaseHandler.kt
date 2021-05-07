@@ -82,4 +82,15 @@ class DatabaseHandler (context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         return gmpList
     }
 
+    // method untuk menghapus data/record dalam database
+    fun deleteEmployee(gmp: MpModel): Int {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(KEY_ID, gmp.id)
+
+        val success = db.delete(TABLE_CONTACTS, KEY_ID + "=" + gmp.id, null)
+        db.close()
+        return success
+    }
+
 }

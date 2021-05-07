@@ -27,13 +27,15 @@
             android:id="@+id/Tv_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
             android:text="KEGIATAN"/>
 
             <EditText
                 android:id="@+id/Et_keg"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="20dp"
                 android:hint="Masukkan "/>
         </LinearLayout>
         <Button
@@ -43,6 +45,22 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Set"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|center"
+                android:paddingBottom="15dp"
+                android:textStyle="bold"
+                android:textColor="#056773"
+                android:text="Created By : Fiqih"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

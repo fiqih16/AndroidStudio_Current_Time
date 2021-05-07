@@ -16,21 +16,33 @@
         android:id="@+id/Tv_kegia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:hint="Nama Kegiatan"/>
 
     <TextView
         android:id="@+id/Tv_Waktu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:hint="Waktu"/>
 
     <TextView
         android:id="@+id/Tv_Lok"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:hint="Lokasi"/>
+
+    <ImageView
+        android:id="@+id/iv_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:hint="Lokasi"/>
+        android:layout_margin="10dp"
+        android:contentDescription="Image"
+        android:foreground="?attr/selectableItemBackground"
+        android:scaleType="center"
+        android:src="@android:drawable/ic_menu_delete"/>
+
 
 </LinearLayout>

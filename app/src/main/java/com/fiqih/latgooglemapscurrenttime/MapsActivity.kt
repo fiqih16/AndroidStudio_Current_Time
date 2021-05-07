@@ -3,6 +3,7 @@ package com.fiqih.latgooglemapscurrenttime
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
@@ -11,9 +12,12 @@ import android.os.Bundle
 import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.*
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -134,6 +138,7 @@ class MapsActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    // method untuk menambahkan
     private fun addRecord(){
 
         val namakeg = Et_keg.text.toString()
@@ -153,6 +158,11 @@ class MapsActivity : AppCompatActivity() {
             Toast.makeText( this,"Masukkan", Toast.LENGTH_SHORT).show()
         }
     }
+
+
+
+
+
 
 
     // method to close keyboard
