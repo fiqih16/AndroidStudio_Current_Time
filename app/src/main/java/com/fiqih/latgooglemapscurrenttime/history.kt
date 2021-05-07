@@ -16,11 +16,13 @@ class history : AppCompatActivity() {
         setContentView(R.layout.activity_history)
         setupListOfDataIntoRecyclerView()
 
+        // Tombol Back
         val actionBar:ActionBar?= supportActionBar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
 
     }
 
+    // Tombol back
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true

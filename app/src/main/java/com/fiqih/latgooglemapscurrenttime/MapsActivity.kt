@@ -159,12 +159,6 @@ class MapsActivity : AppCompatActivity() {
         }
     }
 
-
-
-
-
-
-
     // method to close keyboard
     private fun closeKeyboard(){
         val view = this.currentFocus
