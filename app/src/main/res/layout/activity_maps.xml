@@ -16,7 +16,7 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="460dp"
             tools:context=".MapsActivity"/>
 
         <LinearLayout
@@ -40,27 +40,24 @@
         </LinearLayout>
         <Button
             android:id="@+id/btn_set"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="7dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Set"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="bottom|center"
-                android:paddingBottom="15dp"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
                 android:textStyle="bold"
                 android:textColor="#056773"
                 android:text="Created By : Fiqih"/>
 
-        </LinearLayout>
+
 
     </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -36,7 +36,7 @@ class itemAdapter (val context: Context, val items: ArrayList<MpModel>) : Recycl
         holder.waktu.text = item.waktu
 
         holder.lokasi.text = item.lokasi
-        holder.no.text = position.toString()
+        holder.no.text = (position+1).toString()
 //        holder.tvalamat.text = item.alamat
 
         if (position % 2 == 0) {

@@ -42,7 +42,8 @@ class MapsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+        //supportActionBar!!.subtitle = "Created by Fiqih"
         getCurrentLocation()
         btn_set.setOnClickListener{
         addRecord()
@@ -99,7 +100,7 @@ class MapsActivity : AppCompatActivity() {
                                         currentLocation.longitude, 1)
 
                                     currentAddress = geoCoderResult[0].getAddressLine(0)
-                                    currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(
+                                    currentTime = SimpleDateFormat("dd-MM-yyyy || HH:mm:ss", Locale.getDefault()).format(
                                             Date()
                                     )
 
@@ -147,7 +148,7 @@ class MapsActivity : AppCompatActivity() {
         if (!namakeg.isEmpty()){
             val status = databaseHandler.addActivities(MpModel(0, namakeg , currentTime , currentAddress))
             if (status > -1){
-                Toast.makeText( this, "Berhasil", Toast.LENGTH_SHORT).show()
+                Toast.makeText( this, "Berhasil Menambahkan", Toast.LENGTH_SHORT).show()
                 Et_keg.text.clear()
 //                Tv_Waktu.text.clear()
 //
@@ -155,7 +156,7 @@ class MapsActivity : AppCompatActivity() {
 
             }
         }else{
-            Toast.makeText( this,"Masukkan", Toast.LENGTH_SHORT).show()
+            Toast.makeText( this,"Masukkan Data Dulu", Toast.LENGTH_SHORT).show()
         }
     }
 
